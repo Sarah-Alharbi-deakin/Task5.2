@@ -11,7 +11,6 @@ app.use(express.static(path.join(__dirname, "public")));
 const booksRoute = require("./routes/booksRoute");
 app.use(booksRoute);
 
-// (اختياري) error handler بسيط
 app.use((err, _req, res, _next) => {
   res.status(500).json({ statusCode: 500, message: err.message || "Server error" });
 });
