@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Books Catalog</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 24px; }
+    .item { margin: 10px 0; }
+    .author { color: #555; }
+  </style>
+</head>
+<body>
+  <h1>Books Catalog</h1>
+  <div id="out">Loading...</div>
+
+  <script>
+    const out = document.getElementById("out");
+
+    function render(items) {
+      out.innerHTML = "";
+      if (!Array.isArray(items) || items.length === 0) {
+        out.textContent = "No books";
+        return;
+      }
+      items.forEach(b => {
+        const p = document.createElement("p");
+        p.className = "item";
+        p.innerHTML = `<strong>${b.title}</strong> <span class="author">— ${b.author}</span>`;
+        out.appendChild(p);
+      });
+    }
+
+    window.addEventListener("DOMContentLoaded", async () => {
+      try {
+        const res = await fetch("/api/books");
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const body = await res.json();     // { statusCode, data, message }
+        render(body.data);
+      } catch (err) {
+        console.error(err);
+        out.textContent = "Error loading books";
+      }
+    });
+  </script>
+</body>
+</html>
