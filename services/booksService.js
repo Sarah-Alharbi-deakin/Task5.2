@@ -44,7 +44,7 @@ const books = [
     year: 1992,
     genre: "Fantasy",
     summary:
-      "In Omnia, the god Om returns as a tortoise, and novice Brutha must confront dogma, empire, and the nature of belief. The Discworld is flat and is orbited by its sun, but Omnian doctrine says that the world is round and orbits the sun."
+      "In Omnia, the god Om returns as a tortoise, and novice Brutha must confront dogma, empire, and the nature of belief."
   }
 ];
 
